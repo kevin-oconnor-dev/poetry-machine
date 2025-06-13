@@ -5,6 +5,7 @@ import MainHeading from './components/MainHeading/MainHeading';
 import RandomButton from './components/RandomButton/RandomButton';
 import PoemTitle from './components/PoemTitle/PoemTitle'
 import LineLimit from './components/LineLimit/LineLimit';
+import EnterKeyPrompt from './components/EnterKeyPrompt/EnterKeyPrompt';
 import getPoem from './utils/getPoem';
 import typeText from './utils/typeText';
 import { useState, useRef, useEffect } from 'react';
@@ -61,7 +62,7 @@ export default function App() {
 
   async function createAuthorPoem() {
     if (!userEntry.trim()) return;
-    
+
     clearTimeout(typeRef.current.timerId);
     setPoemObj(
       await getPoem(userEntry, null, usedPoemsRef)
@@ -75,7 +76,9 @@ export default function App() {
     return (
       <div id='container' tabIndex={0} onKeyDown={handleKeyDown}>
         <MainHeading textContent='Poetry Machine' className='' />
-        <AuthorInput userEntry={userEntry} setUserEntry={setUserEntry} />
+        <AuthorInput userEntry={userEntry} setUserEntry={setUserEntry}>
+          <EnterKeyPrompt className='input' />
+        </AuthorInput>
         <p id="or-text">OR</p>
         <RandomButton handleRandomClick={handleRandomClick} appMode={appMode} />
         <ChangeModeButton typeRef={typeRef} appMode={appMode} setAppMode={setAppMode} />

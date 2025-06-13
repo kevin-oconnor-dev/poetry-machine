@@ -1,5 +1,5 @@
 import './AuthorInput.css'
-export default function AuthorInput({ userEntry, setUserEntry }) {
+export default function AuthorInput({ userEntry, setUserEntry, children }) {
     return (
         <input
         id="author-input" 
@@ -7,6 +7,8 @@ export default function AuthorInput({ userEntry, setUserEntry }) {
         autoComplete="off"
         value={userEntry}
         onChange={e => setUserEntry(e.target.value)}
-      />
+        >
+          {children}
+        </input>
     )
 }
