@@ -77,7 +77,6 @@ export default function App() {
       <div id='container' tabIndex={0} onKeyDown={handleKeyDown}>
         <MainHeading textContent='Poetry Machine' className='' />
         <AuthorInput userEntry={userEntry} setUserEntry={setUserEntry} />
-        <EnterKeyPrompt className='input' />
         <p id="or-text">OR</p>
         <RandomButton handleRandomClick={handleRandomClick} appMode={appMode} />
         <ChangeModeButton typeRef={typeRef} appMode={appMode} setAppMode={setAppMode} />
