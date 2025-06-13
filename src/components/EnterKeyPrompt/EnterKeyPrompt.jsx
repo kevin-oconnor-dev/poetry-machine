@@ -1,5 +1,5 @@
-import './EnterKeyPrompt.css'
-import { ReactComponent as EnterIcon } from '../../assets/enter-key.svg'
+import './EnterKeyPrompt.css';
+import EnterIcon from '../../assets/enter-key.svg?react';
 
 export default function EnterKeyPrompt({ className }) {
     return (
