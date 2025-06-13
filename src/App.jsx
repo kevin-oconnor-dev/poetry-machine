@@ -90,7 +90,6 @@ export default function App() {
       <div id='container' tabIndex={0} onKeyDown={handleKeyDown}>
         <PoemTitle title={poemObj.title} />
         <p id="poetry">{poemPrint}</p>
-        <ChangeModeButton typeRef={typeRef} appMode={appMode} setAppMode={setAppMode} />
         <div id="author-cont">
           <a 
             id="author-link"
@@ -101,6 +100,7 @@ export default function App() {
           </a>
         </div>
         <LineLimit lineLimit={lineLimit} setLineLimit={setLineLimit} />
+        <EnterKeyPrompt className='poem' />
       </div>
     )
   }

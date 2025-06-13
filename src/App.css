@@ -51,6 +51,7 @@
 #author-cont {
     margin: auto 0 0 2vw;
     padding: 0 5px;
+    font-family: 'Montserrat';
 }
 #author-link {
     text-decoration: none;
@@ -80,6 +81,26 @@ input[type=number] {
   appearance: initial;
 }
 
+#enter-svg.poem {
+    position: absolute;
+    bottom: -2em;
+    right: -2em;
+    width: 3vw;
+    opacity: 0;
+    animation: fade-in-enter 0.5s forwards;
+}
+@keyframes fade-in-enter {
+    from {
+        opacity: 0;
+        bottom: -2em;
+        right: -2em;
+    }
+    to {
+        opacity: 1;
+        bottom: 2em;
+        right: 2em;
+    }
+}
 button:active {
     transform: scale(0.95);
 }

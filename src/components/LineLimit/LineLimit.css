@@ -3,6 +3,7 @@
     -webkit-user-select: none;
     margin-bottom: 2vh;
     height: 2em;
+    font-family: 'Montserrat';
 }
 #line-limit-input {
     width: 2em;
