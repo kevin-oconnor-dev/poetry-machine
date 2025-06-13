@@ -1,0 +1,13 @@
+#max-line {
+    user-select: none;
+    -webkit-user-select: none;
+    margin-bottom: 2vh;
+    height: 2em;
+}
+#line-limit-input {
+    width: 2em;
+    height: 1.5em;
+    padding: .3em;
+    border: none;
+    border-radius: 5%;
+}

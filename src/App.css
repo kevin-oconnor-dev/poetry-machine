@@ -1,0 +1,87 @@
+#container {
+   display: flex;
+   min-height: 100vh;
+   flex-direction: column;
+   justify-content: space-between;
+   outline: none;
+}
+#poetry {
+    font-size: 28px;
+    white-space: pre-wrap;
+    margin: 5vh auto;
+}
+@media (max-width: 800px) {
+    #poem-box #poetry {
+        font-size: 24px;
+    }
+}
+@media (max-width: 550px) {
+    #poem-box #poetry {
+        font-size: 20px;
+    }
+}
+#or-text {
+    text-align: center;
+    font-family: 'Savate';
+    font-size: 4em;
+    background-color: white;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0.5vw 1vw;
+    border-radius: 50%;
+}
+#random-btn {
+    width: 30vw;
+    height: 6vh;
+    font-size: 1.5em;
+    margin: 0 auto;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Savate';
+    color: white;
+    text-shadow: 1px 2px 1px black;
+    background-color: #ab3030;
+}
+#random-btn:hover {
+    background-color: #8f2727;
+    cursor: pointer;
+}
+#author-cont {
+    margin: auto 0 0 2vw;
+    padding: 0 5px;
+}
+#author-link {
+    text-decoration: none;
+}
+#author-link:hover {
+    color: black;
+}
+#max-line {
+    width: fit-content;
+    margin: 1vw 0 0 2vw;
+    padding: 5px;
+    border-radius: 5px;
+}
+#max-line:hover {
+    background-color: grey;
+    cursor: pointer;
+}
+/* remove input arrows on Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* remove input arrows on Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: initial;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+#cancel-madlibs {
+    margin-left: 20vw;
+}

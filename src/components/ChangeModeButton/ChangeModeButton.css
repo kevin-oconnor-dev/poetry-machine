@@ -1,0 +1,10 @@
+#madlibs-btn {
+    width: fit-content;
+    font-size: 2em;
+    font-family: 'Savate';
+    padding: 5px;
+    position: absolute;
+    right: 1vw;
+    top: 1vw;
+    cursor: pointer;
+}

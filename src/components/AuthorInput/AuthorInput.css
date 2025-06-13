@@ -1,0 +1,17 @@
+#author-input {
+    width: 70vw;
+    height: 3em;
+    margin: 0 auto;
+    font-family: 'Funnel Display';
+    font-size: 1em;
+    padding: 0 5px;
+    z-index: 1;
+    position: relative;
+    transition: transform 0.2s;
+}
+#author-input:focus {
+    transform: translate(-0.125rem, -0.125rem);
+    box-shadow: 5px 5px 2px -2px #595959;
+    outline: none;
+    border: 1px solid black;
+}
