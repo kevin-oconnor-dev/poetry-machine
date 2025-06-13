@@ -3,7 +3,7 @@ export default function typeText(poemLines, typeRef, lineLimit, setPoemPrint) {
     let lineIndex = 0;
     let charIndex = 0;
     let linesActual = 0; // line count excluding blanks
-    let variedSpeed = Math.floor(Math.random() * (60 - 50 + 1) + 50);
+    let variedSpeed = Math.floor(Math.random() * (50 - 40 + 1) + 40);
 
     if (!lineLimit) lineLimit = 999;
     

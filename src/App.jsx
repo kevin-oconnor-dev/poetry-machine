@@ -44,6 +44,7 @@ export default function App() {
           createAuthorPoem();
           break;
         case 'default-poem':
+          clearTimeout(typeRef.current.timerId);
           setAppMode('default');
           break;
       }
@@ -51,9 +52,7 @@ export default function App() {
   }
 
   async function handleRandomClick() {
-    if (typeRef.current.typing) {
-      clearTimeout(typeRef.current.timerId);
-    }
+    clearTimeout(typeRef.current.timerId);
     setPoemObj(
       await getPoem(null, null, usedPoemsRef)
     );
@@ -62,10 +61,8 @@ export default function App() {
 
   async function createAuthorPoem() {
     if (!userEntry.trim()) return;
-
-    if (typeRef.current.typing) {
-      clearTimeout(typeRef.current.timerId);
-    }
+    
+    clearTimeout(typeRef.current.timerId);
     setPoemObj(
       await getPoem(userEntry, null, usedPoemsRef)
     );
