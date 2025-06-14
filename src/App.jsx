@@ -24,7 +24,7 @@ export default function App() {
 
   // toggle background dots in poem mode
   useEffect(() => {
-    if (appMode == 'default-poem' || appMode == 'madlibs-poem') {
+    if (appMode == 'default-poem' || appMode == 'madlibs-poem' || appMode == 'loading') {
       document.body.classList.remove('dots');
     } else {
       document.body.classList.add('dots');
@@ -56,11 +56,30 @@ export default function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [appMode]);
-  
+  }, [appMode, userEntry]);
+
+  async function createAuthorPoem() {
+    if (!userEntry.trim()) return;
+    
+    clearTimeout(typeRef.current.timerId);
+    setAppMode('loading');
+    let nextPoemObj = null;
+    try {
+      nextPoemObj = await getPoem(userEntry, null, usedPoemsRef);
+    } catch(err) {
+      setAppMode('default');
+      console.error('Fetch Error: ', err);
+      return;
+    }
+    setPoemObj(nextPoemObj);
+    setAppMode('default-poem');
+    setUserEntry('');
+  }
 
   async function handleRandomClick() {
     clearTimeout(typeRef.current.timerId);
+    setAppMode('loading');
+
     let nextPoemObj = null;
     try {
       nextPoemObj = await getPoem(null, null, usedPoemsRef);
@@ -72,18 +91,6 @@ export default function App() {
     setPoemObj(nextPoemObj);
     setAppMode('default-poem');
   }
-
-  async function createAuthorPoem() {
-    if (!userEntry.trim()) return;
-
-    clearTimeout(typeRef.current.timerId);
-    setPoemObj(
-      await getPoem(userEntry, null, usedPoemsRef)
-    );
-    setAppMode('default-poem');
-    setUserEntry('');
-}
-
 
   if (appMode == 'default') {
     return (
@@ -127,6 +134,18 @@ export default function App() {
       </div>
     )
   }
-  
-}
 
+  if (appMode == 'loading') {
+    return (
+      <div id='loading-container'>
+        <svg className='loading-icon' viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <rect className="load-bar load-group1" x="1" y="6" width="2.8" height="12" />
+          <rect className="load-bar load-group2" x="5.8" y="6" width="2.8" height="12" />
+          <rect className="load-bar" x="10.6" y="6" width="2.8" height="12" />
+          <rect className="load-bar load-group2" x="15.4" y="6" width="2.8" height="12" />
+          <rect className="load-bar load-group1" x="20.2" y="6" width="2.8" height="12" />
+        </svg>
+      </div>
+    )
+  }
+}
