@@ -6,6 +6,7 @@ import RandomButton from './components/RandomButton/RandomButton';
 import PoemTitle from './components/PoemTitle/PoemTitle'
 import LineLimit from './components/LineLimit/LineLimit';
 import EnterKeyPrompt from './components/EnterKeyPrompt/EnterKeyPrompt';
+import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 import getPoem from './utils/getPoem';
 import typeText from './utils/typeText';
 import { useState, useRef, useEffect } from 'react';
@@ -16,6 +17,7 @@ export default function App() {
   const [lineLimit, setLineLimit] = useState(0);
   const [poemObj, setPoemObj] = useState(null); // for createAuthorPoem
   const [poemPrint, setPoemPrint] = useState('');
+  const [fetchError, setFetchError] = useState(false);
   const usedPoemsRef = useRef([]);
   const typeRef = useRef({ // track the typeText function
     timerId: null,
@@ -86,6 +88,10 @@ export default function App() {
     } catch(err) {
       setAppMode('default');
       console.error('Fetch Error: ', err);
+      setFetchError(true)
+      setTimeout(() => {
+        setFetchError(false)
+      }, 3000)
       return;
     }
     setPoemObj(nextPoemObj);
@@ -101,6 +107,7 @@ export default function App() {
         <RandomButton handleRandomClick={handleRandomClick} appMode={appMode} />
         <ChangeModeButton typeRef={typeRef} appMode={appMode} setAppMode={setAppMode} />
         <LineLimit lineLimit={lineLimit} setLineLimit={setLineLimit} />
+        {fetchError && <ErrorMessage />}
       </div>
     );
   } 
