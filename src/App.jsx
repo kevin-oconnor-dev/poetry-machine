@@ -38,19 +38,26 @@ export default function App() {
     }
   }, [poemObj]);
 
-  function handleKeyDown(e) {
-    if (e.key == 'Enter') {
-      switch (appMode) {
-        case 'default':
-          createAuthorPoem();
-          break;
-        case 'default-poem':
-          clearTimeout(typeRef.current.timerId);
-          setAppMode('default');
-          break;
+  // global listener for keydown 'Enter'
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (e.key == 'Enter') {
+        switch (appMode) {
+          case 'default':
+            createAuthorPoem();
+            break;
+          case 'default-poem':
+            clearTimeout(typeRef.current.timerId);
+            setAppMode('default');
+            break;
+        }
       }
     }
-  }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [appMode]);
+  
 
   async function handleRandomClick() {
     clearTimeout(typeRef.current.timerId);
@@ -80,7 +87,7 @@ export default function App() {
 
   if (appMode == 'default') {
     return (
-      <div id='container' tabIndex={0} onKeyDown={handleKeyDown}>
+      <div id='container'>
         <MainHeading textContent='Poetry Machine' className='' />
         <AuthorInput userEntry={userEntry} setUserEntry={setUserEntry} />
         <p id="or-text">OR</p>
@@ -93,7 +100,7 @@ export default function App() {
 
   if (appMode == 'default-poem') {
     return (
-      <div id='container' tabIndex={0} onKeyDown={handleKeyDown}>
+      <div id='container'>
         <PoemTitle title={poemObj.title} />
         <p id="poetry">{poemPrint}</p>
         <div id="author-cont">
@@ -113,7 +120,7 @@ export default function App() {
   
   if (appMode == 'madlibs') {
     return (
-      <div id='container' tabIndex={0}>
+      <div id='container'>
         <MainHeading textContent='Madlibs!' className='madlibs-text' />
         <p id="poetry"></p>
         <ChangeModeButton typeRef={typeRef} appMode={appMode} setAppMode={setAppMode} />
