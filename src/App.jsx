@@ -120,7 +120,10 @@ export default function App() {
           </a>
         </div>
         <LineLimit lineLimit={lineLimit} setLineLimit={setLineLimit} />
-        <EnterKeyPrompt className='poem' />
+        <div id='enter-key-poem'>
+          <span>Exit</span>
+          <EnterKeyPrompt className='poem' />
+        </div>
       </div>
     )
   }

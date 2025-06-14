@@ -66,23 +66,33 @@ input[type=number] {
 appearance: initial;
 }
 
-#enter-svg.poem {
+#enter-key-poem {
+  display: flex;
+  align-items: center;
+  height: fit-content;
+  gap: 0.5em;
   position: fixed;
   bottom: -2em;
   right: -2em;
-  width: 3vw;
   opacity: 0;
   animation: fade-in-enter 0.5s forwards;
+}
+#enter-key-poem span {
+  font-family: 'Montserrat';
+  font-size: 1.4em;
+}
+#enter-svg.poem {
+  width: 3vw;
 }
 @keyframes fade-in-enter {
   from {
       opacity: 0;
-      bottom: -2em;
+      top: -2em;
       right: -2em;
   }
   to {
       opacity: 1;
-      bottom: 2em;
+      top: 2em;
       right: 2em;
   }
 }
