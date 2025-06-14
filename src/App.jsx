@@ -54,9 +54,15 @@ export default function App() {
 
   async function handleRandomClick() {
     clearTimeout(typeRef.current.timerId);
-    setPoemObj(
-      await getPoem(null, null, usedPoemsRef)
-    );
+    let nextPoemObj = null;
+    try {
+      nextPoemObj = await getPoem(null, null, usedPoemsRef);
+    } catch(err) {
+      setAppMode('default');
+      console.error('Fetch Error: ', err);
+      return;
+    }
+    setPoemObj(nextPoemObj);
     setAppMode('default-poem');
   }
 

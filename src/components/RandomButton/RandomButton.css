@@ -1,0 +1,52 @@
+#random-btn {
+  width: 30vw;
+  height: 6vh;
+  font-size: 1.5em;
+  text-align: center;
+  transform: translateY(-3px);
+  margin: 0 auto;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Montserrat';
+  color: white;
+  background-color: #ab3030;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+    #f8f8f8 0 -3px 0 inset;
+  cursor: pointer;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  appearance: none;
+  touch-action: manipulation;
+}
+
+#random-btn:focus {
+  box-shadow: #D6D6E7 0 0 0 1.5px inset,
+   rgba(45, 35, 66, 0.4) 0 2px 4px, 
+   rgba(45, 35, 66, 0.3) 0 7px 13px -3px, 
+   #D6D6E7 0 -3px 0 inset;
+}
+
+#random-btn:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, 
+  rgba(45, 35, 66, 0.3) 0 7px 13px -3px, 
+  #D6D6E7 0 -3px 0 inset;
+  transform: translateY(-0.125em);
+}
+
+#random-btn:active {
+  box-shadow: #D6D6E7 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
+#random-btn-text {
+  display: inline-block;
+  transform: translateY(-3px);
+}
+
+.hidden {
+  visibility: hidden;
+}
