@@ -46,6 +46,9 @@ export default function App() {
             clearTimeout(typeRef.current.timerId);
             setAppMode('default');
             break;
+          case 'madlibs-poem':
+            clearTimeout(typeRef.current.timerId);
+            setAppMode('madlibs');
         }
       }
     }
@@ -137,7 +140,12 @@ export default function App() {
       <div id='container' className='madlibs'>
         <MainHeading textContent='Madlibs!' className='madlibs-text' />
         <p id="poetry"></p>
-        <MadWidgets setFetchError={setFetchError} typeRef={typeRef} />
+        <MadWidgets 
+          setFetchError={setFetchError} 
+          typeRef={typeRef} 
+          setPoemPrint={setPoemPrint}
+          setAppMode={setAppMode}
+        />
         <ChangeModeButton typeRef={typeRef} appMode={appMode} setAppMode={setAppMode} />
         {fetchError && <ErrorMessage />}
       </div>
@@ -147,17 +155,7 @@ export default function App() {
   if (appMode == 'madlibs-poem') {
     return (
       <div id='container'>
-        <p id="poetry">{poemPrint}</p>
-        <div id="author-cont">
-          <a 
-            id="author-link"
-            href={`https://en.wikipedia.org/wiki/${poemObj.author}`}
-            target='_blank'
-          >
-            {poemObj.author}
-          </a>
-        </div>
-        <LineLimit lineLimit={lineLimit} setLineLimit={setLineLimit} />
+        <p id="poetry-madlibs">{poemPrint}</p>
         <div id='enter-key-poem'>
           <span>Exit</span>
           <EnterKeyPrompt className='poem' />

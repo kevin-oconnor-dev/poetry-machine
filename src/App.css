@@ -5,12 +5,20 @@
   justify-content: space-between;
   outline: none;
 }
-#poetry {
+#poetry, #poetry-madlibs {
   font-size: 28px;
-  white-space: pre-wrap;
-  margin: 2vh auto;
+  white-space: pre;
   line-height: 1.5;
   font-family: Georgia, 'Times New Roman', Times, serif;
+}
+#poetry {
+  margin: 2vh auto;
+}
+#poetry-madlibs {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 @media (max-width: 800px) {
   #poem-box #poetry {
