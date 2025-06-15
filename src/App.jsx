@@ -34,13 +34,6 @@ export default function App() {
     }
   }, [appMode])
 
-  // print poem once fetched
-  useEffect(() => {
-    if (poemObj) {
-      typeText(poemObj.lines, typeRef, lineLimit, setPoemPrint);
-    }
-  }, [poemObj]);
-
   // global listener for keydown 'Enter'
   useEffect(() => {
     function handleKeyDown(e) {
@@ -75,6 +68,8 @@ export default function App() {
       return;
     }
     setPoemObj(nextPoemObj);
+    typeText(nextPoemObj.lines, typeRef, lineLimit, setPoemPrint);
+    
     setAppMode('default-poem');
     setUserEntry('');
   }
@@ -86,6 +81,7 @@ export default function App() {
     let nextPoemObj = null;
     try {
       nextPoemObj = await getPoem(null, null, usedPoemsRef);
+      typeText(nextPoemObj.lines, typeRef, lineLimit, setPoemPrint);
     } catch(err) {
       setAppMode('default');
       console.error('Fetch Error: ', err);
@@ -141,9 +137,31 @@ export default function App() {
       <div id='container' className='madlibs'>
         <MainHeading textContent='Madlibs!' className='madlibs-text' />
         <p id="poetry"></p>
-        <MadWidgets setFetchError={setFetchError} />
+        <MadWidgets setFetchError={setFetchError} typeRef={typeRef} />
         <ChangeModeButton typeRef={typeRef} appMode={appMode} setAppMode={setAppMode} />
         {fetchError && <ErrorMessage />}
+      </div>
+    )
+  }
+
+  if (appMode == 'madlibs-poem') {
+    return (
+      <div id='container'>
+        <p id="poetry">{poemPrint}</p>
+        <div id="author-cont">
+          <a 
+            id="author-link"
+            href={`https://en.wikipedia.org/wiki/${poemObj.author}`}
+            target='_blank'
+          >
+            {poemObj.author}
+          </a>
+        </div>
+        <LineLimit lineLimit={lineLimit} setLineLimit={setLineLimit} />
+        <div id='enter-key-poem'>
+          <span>Exit</span>
+          <EnterKeyPrompt className='poem' />
+        </div>
       </div>
     )
   }
