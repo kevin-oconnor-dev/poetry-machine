@@ -7,6 +7,7 @@ import PoemTitle from './components/PoemTitle/PoemTitle'
 import LineLimit from './components/LineLimit/LineLimit';
 import EnterKeyPrompt from './components/EnterKeyPrompt/EnterKeyPrompt';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
+import MadlibsLineNumSelector from './components/MadlibsLineNumSelector/MadlibsLineNumSelector';
 import getPoem from './utils/getPoem';
 import typeText from './utils/typeText';
 import { useState, useRef, useEffect } from 'react';
@@ -137,9 +138,10 @@ export default function App() {
   
   if (appMode == 'madlibs') {
     return (
-      <div id='container'>
+      <div id='container' className='madlibs'>
         <MainHeading textContent='Madlibs!' className='madlibs-text' />
         <p id="poetry"></p>
+        <MadlibsLineNumSelector />
         <ChangeModeButton typeRef={typeRef} appMode={appMode} setAppMode={setAppMode} />
       </div>
     )

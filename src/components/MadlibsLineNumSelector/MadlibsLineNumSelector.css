@@ -1,0 +1,44 @@
+#container.madlibs {
+    display: block;
+    width: 100%;
+}
+
+#ml-line-num-selector {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    margin: 0 auto;
+    width: 45vw;
+    height: 15vh;
+}
+
+.ml-num-btn {
+    width: 4vw;
+    height: 4vw;
+    margin-top: auto;
+    border-radius: 50%;
+    border: none;
+    background-color: rgb(203, 203, 203);
+    cursor: pointer;
+}
+
+.ml-num-btn:hover {
+    background-color: rgb(181, 180, 180);
+}
+
+#container .ml-num-btn:active, #container .selected {
+    background-color: rgb(84, 84, 84);
+}
+
+#ml-line-num-selector h3 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Montserrat';
+    font-size: 2em;
+    font-weight: normal;
+}
