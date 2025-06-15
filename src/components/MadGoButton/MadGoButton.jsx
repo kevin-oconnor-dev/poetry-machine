@@ -1,12 +1,22 @@
-import "./MadGoButton.css";
+import './MadGoButton.css';
+import getMadlibsPoems from '../../utils/getMadlibsPoems';
 import { useState } from 'react';
 
-export default function MadGoButton() {
+export default function MadGoButton({ lineNum, setFetchError }) {
   const [showGoButton, setShowGoButton] = useState(true);
   
   async function handleClick() {
     setShowGoButton(false);
-    // TODO: add madlibs function
+
+    try {
+      await getMadlibsPoems(lineNum);
+    } catch(err) {
+      setFetchError(true);
+      console.error('Madlibs fetch error: ', err);
+      setTimeout(() => {
+        setFetchError(false);
+      }, 3000);
+    }
     setShowGoButton(true);
   }
   

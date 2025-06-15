@@ -7,8 +7,7 @@ import PoemTitle from './components/PoemTitle/PoemTitle'
 import LineLimit from './components/LineLimit/LineLimit';
 import EnterKeyPrompt from './components/EnterKeyPrompt/EnterKeyPrompt';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
-import MadLineNumSelector from './components/MadLineNumSelector/MadLineNumSelector';
-import MadGoButton from './components/MadGoButton/MadGoButton';
+import MadWidgets from './components/MadWidgets/MadWidgets';
 import getPoem from './utils/getPoem';
 import typeText from './utils/typeText';
 import { useState, useRef, useEffect } from 'react';
@@ -142,9 +141,9 @@ export default function App() {
       <div id='container' className='madlibs'>
         <MainHeading textContent='Madlibs!' className='madlibs-text' />
         <p id="poetry"></p>
-        <MadLineNumSelector />
-        <MadGoButton />
+        <MadWidgets setFetchError={setFetchError} />
         <ChangeModeButton typeRef={typeRef} appMode={appMode} setAppMode={setAppMode} />
+        {fetchError && <ErrorMessage />}
       </div>
     )
   }
