@@ -27,7 +27,7 @@ export default function MadGoButton({ lineNum, setFetchError }) {
         onClick={handleClick}
         className={showGoButton ? "" : "hidden"}
       >
-        <span id="mad-go-btn-text">Get a random poem!</span>
+        <span id="mad-go-btn-text">Go!</span>
       </button>
     </>
   );
