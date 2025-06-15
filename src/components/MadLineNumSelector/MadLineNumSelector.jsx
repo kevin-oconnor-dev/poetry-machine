@@ -1,12 +1,8 @@
-import './MadlibsLineNumSelector.css';
-import { useState, useEffect } from 'react';
+import './MadLineNumSelector.css';
+import { useState } from 'react';
 
 export default function MadlibsLineNumSelector() {
     const [selectedId, setSelectedId] = useState(null)
-
-    useEffect(() => {
-        console.log(`New selected ID: ${selectedId}`)
-    }, [selectedId])
 
     return (
         <>

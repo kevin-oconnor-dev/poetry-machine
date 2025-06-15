@@ -7,7 +7,8 @@ import PoemTitle from './components/PoemTitle/PoemTitle'
 import LineLimit from './components/LineLimit/LineLimit';
 import EnterKeyPrompt from './components/EnterKeyPrompt/EnterKeyPrompt';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
-import MadlibsLineNumSelector from './components/MadlibsLineNumSelector/MadlibsLineNumSelector';
+import MadLineNumSelector from './components/MadLineNumSelector/MadLineNumSelector';
+import MadGoButton from './components/MadGoButton/MadGoButton';
 import getPoem from './utils/getPoem';
 import typeText from './utils/typeText';
 import { useState, useRef, useEffect } from 'react';
@@ -141,7 +142,8 @@ export default function App() {
       <div id='container' className='madlibs'>
         <MainHeading textContent='Madlibs!' className='madlibs-text' />
         <p id="poetry"></p>
-        <MadlibsLineNumSelector />
+        <MadLineNumSelector />
+        <MadGoButton />
         <ChangeModeButton typeRef={typeRef} appMode={appMode} setAppMode={setAppMode} />
       </div>
     )
