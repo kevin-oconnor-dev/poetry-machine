@@ -10,7 +10,7 @@ import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 import MadWidgets from './components/MadWidgets/MadWidgets';
 import getPoem from './utils/getPoem';
 import typeText from './utils/typeText';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 
 export default function App() {
   const [appMode, setAppMode] = useState('default');
@@ -34,6 +34,26 @@ export default function App() {
     }
   }, [appMode])
 
+  const createAuthorPoem = useCallback(async () => {
+    if (!userEntry.trim()) return;
+    
+    clearTimeout(typeRef.current.timerId);
+    setAppMode('loading');
+    let nextPoemObj = null;
+    try {
+      nextPoemObj = await getPoem(userEntry, null, usedPoemsRef);
+    } catch(err) {
+      setAppMode('default');
+      console.error('Fetch Error: ', err);
+      return;
+    }
+    setPoemObj(nextPoemObj);
+    typeText(nextPoemObj.lines, typeRef, lineLimit, setPoemPrint);
+    
+    setAppMode('default-poem');
+    setUserEntry('');
+  },[userEntry, lineLimit]);
+  
   // global listener for keydown 'Enter'
   useEffect(() => {
     function handleKeyDown(e) {
@@ -55,27 +75,7 @@ export default function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [appMode, userEntry]);
-
-  async function createAuthorPoem() {
-    if (!userEntry.trim()) return;
-    
-    clearTimeout(typeRef.current.timerId);
-    setAppMode('loading');
-    let nextPoemObj = null;
-    try {
-      nextPoemObj = await getPoem(userEntry, null, usedPoemsRef);
-    } catch(err) {
-      setAppMode('default');
-      console.error('Fetch Error: ', err);
-      return;
-    }
-    setPoemObj(nextPoemObj);
-    typeText(nextPoemObj.lines, typeRef, lineLimit, setPoemPrint);
-    
-    setAppMode('default-poem');
-    setUserEntry('');
-  }
+  }, [appMode, createAuthorPoem]);
 
   async function handleRandomClick() {
     clearTimeout(typeRef.current.timerId);
