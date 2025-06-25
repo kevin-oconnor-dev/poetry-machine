@@ -1,12 +1,13 @@
-# React + Vite
+# Poetry Machine
+Poetry Machine is a web application that writes out famous poems from [PoetryDB](https://github.com/thundercomb/poetrydb) across the screen. You can also generate random poems made up of 1-8 random lines from PoetryDB's database!
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Purpose and Goal
+I was inspired to make this project after coming across [PoetryDB](https://github.com/thundercomb/poetrydb). I wanted to make a web app that makes calls to the PoetryDB API and uses a typing function to "type out" a poem onto the page. I developed this project using functional components in React. The app enables users to get a random poem or search for an author in the database. I also created a "Madlibs" mode using Promise.all that allows the user to generate a poem with random lines from between 1 and 8 randomly chosen poems.
 
-Currently, two official plugins are available:
+## Technologies and Explanation
+I originally had made a version of this project using imperative programming and vanilla JavaScript, but after learning React I decided it would be exactly the kind of project that would benefit from using React's declarative-based UI style. I used functional components and conditional rendering to display a different UI for each different "mode" of the app (which I kept in state). I made use of useState, useEffect, useRef, and useCallback in this project. I enjoyed using React quite a bit and immediately found why it's useful for developing UIs that have a lot of moving parts.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Problems and Thought Process
+As this was the first web app of my own that I've made using React, I got the chance to apply what I had learned from studying the docs and doing tutorial projects. One problem I ran into occured because I didn't have ESLint installed to verify the dependencies in my useEffect dependency array, but actually wound up teaching me a lot about how closures work in the context of React and React's rendering logic. Inside of my useEffect, I was calling a function without including it in the dependency array. I neglected to consider that the function at the top level of my component would be re-declared every time the component rendered, and that this would cause the function captured in my useEffect to have a stale closure over a state variable that it used.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+It was a complicated problem that had a simple solution (declare the function with useCallback and put it inside the useEffect's dependency array) but I was actually glad I didn't have ESLint installed and had to understand what was happening myself. It gave me a deeper understanding of what was going on, and thankfully now it's something I won't have to go through again!
