@@ -25,8 +25,7 @@ export default async function getPoem(author, signal, usedPoemsRef) {
         return jsonPoem;
     } catch (err) {
         if (err instanceof FetchError) {
-            console.error('getPoem fetch error:', error);
-            appUI.poemElement.innerText = 'Uh-oh! There was an error loading the poem...';
+            console.error('getPoem fetch error:', err);
         } else {
             throw err;
         }
