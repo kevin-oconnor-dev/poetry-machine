@@ -14,9 +14,6 @@ export default async function getMadlibsPoems(lineNum) {
             poems.push(jsonArray[0]);
         }
         if (jsons.length !== lineNum) throw new Error('Madlibs fetch error');
-    } catch(err) {
-        throw err;
-        // errors caught in MadGoButton's handleClick function
     } finally {
       clearTimeout(timerId);
     }
